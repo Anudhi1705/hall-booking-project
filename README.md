@@ -123,6 +123,7 @@ http://localhost:3000
 
 ##  Features Implemented
 
+*  Backend APIs were tested using Postman before frontend integration to ensure all CRUD operations worked correctly
 *  Display list of hall bookings
 *  Create new booking
 *  Update existing booking
