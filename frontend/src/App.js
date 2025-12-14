@@ -61,6 +61,8 @@ function App() {
       end_time: endTime,
     };
 
+
+
     const url = editingId
       ? `http://localhost:5000/update-booking/${editingId}`
       : "http://localhost:5000/book-hall";
@@ -97,6 +99,31 @@ function App() {
       alert("Booking failed!");
     }
   };
+
+  const handleBack = () => {
+  // Previous page pe le jaata hai
+  window.history.back();
+};
+
+const handleDoNotBook = () => {
+  // Form clear + editing cancel
+  setEditingId(null);
+
+  setHallName("");
+  setCustomerName("");
+  setEmail("");
+  setPhone("");
+  setPurpose("");
+  setBookingType("");
+  setRent("");
+  setAdditionalCharge("");
+  setDate("");
+  setStartTime("");
+  setEndTime("");
+
+  alert("Booking cancelled");
+};
+
 
   const handleDelete = async (id) => {
     await fetch(`http://localhost:5000/delete-booking/${id}`, {
@@ -176,9 +203,20 @@ function App() {
         <label>End Time</label>
         <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
 
-        <button className="primary" onClick={handleBooking}>
-          {editingId ? "Update Booking" : "Book Hall"}
-        </button>
+        <div style={{ display: "flex", gap: "10px", marginTop: "15px" }}>
+  <button className="primary" onClick={handleBooking}>
+    {editingId ? "Update Booking" : "Book Hall"}
+  </button>
+
+  <button onClick={handleBack}>
+    Back
+  </button>
+
+  <button className="danger" onClick={handleDoNotBook}>
+    Do Not Book
+  </button>
+</div>
+
       </div>
 
       {/* TABLE */}
